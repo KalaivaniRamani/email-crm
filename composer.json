@@ -6,6 +6,7 @@
         "ext-imap": "*",
         "ext-pdo": "*",
         "phpmailer/phpmailer": "^7.0",
-        "textalk/websocket": "^1.6"
+        "textalk/websocket": "^1.6",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

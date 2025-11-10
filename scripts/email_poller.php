@@ -1,18 +1,24 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 use WebSocket\Client;
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
 class RealEmailPoller {
     private $db;
-    private $emailConfig = [
-        'host' => 'imap.gmail.com',
-        'port' => 993,
-        'username' => 'rkalai1001@gmail.com',
-        'password' => 'ykumtkijrlkhoite', // your app password
-        'encryption' => 'ssl'
-    ];
+    private $emailConfig;
 
     public function __construct() {
+        $this->emailConfig = [
+            'host' => $_ENV['EMAIL_IMAP_HOST'],
+            'port' => $_ENV['EMAIL_IMAP_PORT'],
+            'username' => $_ENV['EMAIL_USERNAME'],
+            'password' => $_ENV['EMAIL_PASSWORD'],
+            'encryption' => $_ENV['EMAIL_IMAP_ENCRYPTION']
+        ];
+
         $config = require __DIR__ . '/../config/database.php';
         $this->db = new PDO("mysql:host={$config['host']};dbname={$config['dbname']}", $config['username'], $config['password']);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -1,4 +1,11 @@
 <?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+
 header('Content-Type: application/json');
 $input = json_decode(file_get_contents('php://input'), true);
 
@@ -26,15 +33,16 @@ try {
     // Send email using PHPMailer
     // FIX: Update vendor path
     require_once __DIR__ . '/../../vendor/autoload.php';
-    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    $mail = new PHPMailer(true);
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = $_ENV['EMAIL_SMTP_HOST'];
     $mail->SMTPAuth = true;
-    $mail->Username = 'rkalai1001@gmail.com';
-    $mail->Password = 'ykumtkijrlkhoite'; // Add your SMTP password
-    $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
-    $mail->setFrom('rkalai1001@gmail.com', 'Business Email');
+    $mail->Username = $_ENV['EMAIL_USERNAME'];
+    $mail->Password = $_ENV['EMAIL_PASSWORD'];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = $_ENV['EMAIL_SMTP_PORT'];
+    $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Business Email');
     $mail->addAddress($originalEmail['from_email']);
     $mail->Subject = 'Re: ' . $originalEmail['subject'];
     $mail->Body = $input['replyText'];
