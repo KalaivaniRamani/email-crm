@@ -24,6 +24,7 @@ EMAIL_SMTP_HOST=smtp.gmail.com
 EMAIL_SMTP_PORT=587
 
 ## Create the database: (run the query in mysql)
+```
 create database if not exists email_crm character set utf8mb4 collate utf8mb4_unicode_ci;
 
 use email_crm;
@@ -41,6 +42,7 @@ create table if not exists emails (
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
 );
+```
 
 ## Start WebSocket server (open a terminal):  
 php scripts/websocket_server.php
