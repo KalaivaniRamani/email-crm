@@ -2,14 +2,14 @@
 
 This is a step-by-step guide to set up the Email CRM project locally, including database, email poller, and WebSocket server.
 
-## Clone the repository: 
+1. Clone the repository: 
 git clone https://github.com/KalaivaniRamani/email-crm.git  
 cd email-crm
 
-## Install PHP dependencies: 
+2. Install PHP dependencies: 
 composer install
 
-## Create and Edit `.env` with your local settings: 
+3. Create and Edit `.env` with your local settings: 
 DB_HOST=localhost  
 DB_NAME=email_crm  
 DB_USERNAME=root  
@@ -23,19 +23,19 @@ EMAIL_IMAP_ENCRYPTION=ssl
 EMAIL_SMTP_HOST=smtp.gmail.com  
 EMAIL_SMTP_PORT=587
 
-## Create the database:
+4. Create the database:
 CREATE DATABASE email_crm;
 
-## Import database structure if you have a dump:  
+5. Import database structure if you have a dump:  
 mysql -u root -p email_crm < database_dump.sql
 
-## Start WebSocket server (open a terminal):  
+6. Start WebSocket server (open a terminal):  
 php scripts/websocket_server.php
 
-## Start Email Poller (open another terminal):  
+7. Start Email Poller (open another terminal):  
 php scripts/email_poller.php
 
-**Access the app in browser:**  
+8. Access the app in browser:**  
 http://localhost/email_crm/public/
 
 ## Notes: 
