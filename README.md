@@ -10,6 +10,7 @@ cd email-crm
 composer install
 
 ## Create and Edit `.env` with your local settings: 
+```
 DB_HOST=localhost  
 DB_NAME=email_crm  
 DB_USERNAME=root  
@@ -22,6 +23,7 @@ EMAIL_IMAP_PORT=993
 EMAIL_IMAP_ENCRYPTION=ssl  
 EMAIL_SMTP_HOST=smtp.gmail.com  
 EMAIL_SMTP_PORT=587
+```
 
 ## Create the database: (run the query in mysql)
 ```
