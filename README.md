@@ -23,11 +23,24 @@ EMAIL_IMAP_ENCRYPTION=ssl
 EMAIL_SMTP_HOST=smtp.gmail.com  
 EMAIL_SMTP_PORT=587
 
-## Create the database:
-CREATE DATABASE email_crm;
+## Create the database: (run the query in mysql)
+CREATE DATABASE IF NOT EXISTS email_crm CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-## Import database structure if you have a dump:  
-mysql -u root -p email_crm < database_dump.sql
+USE email_crm;
+
+CREATE TABLE IF NOT EXISTS emails (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    message_id VARCHAR(255) NOT NULL,
+    conversation_id VARCHAR(255) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    from_email VARCHAR(255) NOT NULL,
+    body LONGTEXT NOT NULL,
+    received_at DATETIME NOT NULL,
+    in_reply_to VARCHAR(255) DEFAULT NULL,
+    is_read TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
 ## Start WebSocket server (open a terminal):  
 php scripts/websocket_server.php
