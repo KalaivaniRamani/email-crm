@@ -1,0 +1,11 @@
+{
+    "name": "your-company/email-crm",
+    "require": {
+        "workerman/workerman": "^4.0",
+        "predis/predis": "^1.1",
+        "ext-imap": "*",
+        "ext-pdo": "*",
+        "phpmailer/phpmailer": "^7.0",
+        "textalk/websocket": "^1.6"
+    }
+}
