@@ -1,0 +1,7 @@
+vendor/
+.env
+emails/
+.idea/
+node_modules/
+public/storage/
+storage/
